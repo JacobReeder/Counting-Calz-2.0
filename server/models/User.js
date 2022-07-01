@@ -6,7 +6,6 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: true,
-      unique: true,
       trim: true
     },
     email: {
@@ -26,9 +25,9 @@ const userSchema = new Schema(
         ref: 'Post'
       }
     ],
-   // goal: {
-   //   type: Integer,
-   // }
+    goal: {
+     type: Number,
+   }
    
   },
   {
