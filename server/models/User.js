@@ -26,9 +26,9 @@ const userSchema = new Schema(
         ref: 'Post'
       }
     ],
-   // goal: {
-   //   type: Integer,
-   // }
+    goal: {
+      type: Number,
+    }
    
   },
   {
