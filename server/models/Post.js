@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat')
 
 const postSchema = new Schema(
   {
@@ -8,14 +9,15 @@ const postSchema = new Schema(
       minlength: 1,
       maxlength: 240
     },
-   // calories: {        **Commented out: Throws error; integer not define
-   //   type: Integer,
-   //   required: true, 
-   // },
-  //  date_time: {   **Commented out; need to complete this 
-   //   type: String,
-   //   required: true,
-  //  },
+   calories: {
+     type: Number,
+     required: true, 
+   },
+   date_time: {
+     type: String,
+     required: true,
+     get: (dateData) => dateFormat.apply(dateData)
+   },
     user_id: {
       type: String,
       required: true,
@@ -24,6 +26,7 @@ const postSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     }
   }
 );
