@@ -8,17 +8,15 @@ const typeDefs = gql`
     username: String
     email: String
     posts: [Post]
-    goal: Int
-   
+    
   }
 
   type Post {
     _id: ID
     description: String
-    user_id: String
+    user_id: String  
   }
-  
- 
+
   type Query {
     users: [User]
     user(email: String!): User
@@ -28,7 +26,14 @@ const typeDefs = gql`
 `;
 
 
-//calories: Int   **Put back into Post once completed
-//    date_time: String **Put back into post once completed
-// export the typeDefs
+//    Note: Post cannot accept -  
+        //**Put back into Post once completed
+        // date_time: String **Put back into post once completed
+
+//    Note: User cannot accept -
+        //**Put back into Post once completed
+        //posts: [Post]         
+        //goal: Int
+
+
 module.exports = typeDefs;
