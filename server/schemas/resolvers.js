@@ -28,12 +28,15 @@ const resolvers = {
   }
   ,
   Mutation: {
+    // works
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
     },
+
+    // works
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -50,20 +53,22 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+    // WIP
     addPost: async (parent, args, context) => {
       if (context.user) {
-        const post = await Post.create({ ...args, username: context.user.username });
-
+        const post = await Post.create({ ...args })
+        
         await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { post: post._id } },
+          { $push: { posts: post._id, description: args.description } },
           { new: true }
-        );
+        )
 
-        return thought;
-        }
-        throw new AuthenticationError('You need to be logged in!');
-      },
+        return post
+      }
+    },
+    // WIP
     // updatePost: async (parent, postId, context) => {
     //   if (context.user) {
     //     const updatedPost = await Post.findOneAndUpdate(
@@ -74,6 +79,8 @@ const resolvers = {
     //     return updatedPost
     //   }
     // },
+
+    // WIP
     addGoal: async (parent, context) => {
       if (context.user) {
         const updatedGoal = await User.findByIdAndUpdate(
@@ -85,13 +92,10 @@ const resolvers = {
       }
     },
 
-    // deletePost: async (parent, context) => {
-    //   if (context.user) {
-    //     const deletedPost = await Post.findOneAndDelete({ _id: post._id })
-    //   }
-      
-    //   console.log('Post deleted')
-    // },
+    // WIP
+    deletePost: async (parent, { id }) => {
+      return Post.findByIdAndDelete(id)
+    },
   }
 };
   

@@ -54,12 +54,15 @@ const typeDefs = gql`
       description: String!, 
       calories: Int!, 
       date_time: String!, 
-      user_id: String!
     ): Post
 
     addGoal(
       goal: Int!
     ): User
+
+    deletePost(
+      id: String
+    ): Post
   }
 `;
 
