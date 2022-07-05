@@ -7,10 +7,12 @@
   --4th-Color: #4C5F6B;
   --title-font: 'Bebas Neue', cursive;
   --main-font: 'Montserrat', sans-serif;
+  --text-shadow: 1px 1px rgba(0,0,0,0.4)
 }
 
 body {
   font-family: var(--main-font);
+  background-color: var(--4th-Color);
 }
 
 body a {
@@ -22,14 +24,79 @@ body a {
 header {
   background-color: var(--3rd-Color);
   display: grid;
-  grid-template-columns: repeat(1fr);
+  grid-template-columns: repeat(1, 1fr);
+  margin-bottom: 1rem;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: center;
+  gap: 1rem;
+}
+
+nav a {
+  color: var(--1st-Color);
+  align-self: center;
+  text-align: center;
 }
 
 /* classes */
 
 .site-title {
-  font-size: 4vh;
+  font-size: 5vh;
   text-align: center;
   justify-self: center;
   font-family: var(--title-font);
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+}
+
+.active-nav {
+  color: var(--4th-Color);
+}
+
+.main-wrap {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.goal-div {
+  background-color: #6DAEDB;
+  border-radius: 1rem 1rem 1rem;
+  padding: 1rem;
+  justify-self: center;
+  width: 85vw;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.calorie-goal {
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.edit-goal-btn {
+  background-color: var(--2nd-Color);
+  border: none;
+  padding: 0.5rem;
+  color: var(--4th-Color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: var(--text-shadow);
+  /* max-width: 25%; */
+  /* justify-self: end; */
+  border-radius: 1rem 1rem 1rem;
+}
+
+.posts-div {
+  background-color: #6DAEDB;
+  border-radius: 1rem 1rem 1rem;
+  padding: 1.5rem;
+  justify-self: center;
+  width: 80vw;
 }
