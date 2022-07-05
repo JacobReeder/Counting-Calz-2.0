@@ -1,0 +1,35 @@
+/* root and utils */
+
+:root {
+  --1st-Color: #C9E4CA;
+  --2nd-Color: #EB9486;
+  --3rd-Color: #6DAEDB;
+  --4th-Color: #4C5F6B;
+  --title-font: 'Bebas Neue', cursive;
+  --main-font: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--main-font);
+}
+
+body a {
+  text-decoration: none;
+}
+
+/* elements */
+
+header {
+  background-color: var(--3rd-Color);
+  display: grid;
+  grid-template-columns: repeat(1fr);
+}
+
+/* classes */
+
+.site-title {
+  font-size: 4vh;
+  text-align: center;
+  justify-self: center;
+  font-family: var(--title-font);
+}
