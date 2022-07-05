@@ -16,12 +16,56 @@ const typeDefs = gql`
     description: String
     user_id: String  
   }
+<<<<<<< HEAD
 
+=======
+  
+  type Auth {
+    token: ID!
+    user: User
+  }
+
+  type Post {
+    _id: ID
+    description: String
+    calories: Int
+    date_time: String
+    user_id: String
+  }
+ 
+>>>>>>> da28a97d0dd722faeaaa1a27104e34447521ca80
   type Query {
     users: [User]
     user(email: String!): User
     posts(email: String): [Post]
     post(_id: ID!): Post
+  }
+  
+  type Mutation {
+    login(
+      email: String!, 
+      password: String!
+    ): Auth
+
+    addUser(
+      username: String!, 
+      email: String!, 
+      password: String!
+    ): Auth
+
+    addPost(
+      description: String!, 
+      calories: Int!, 
+      date_time: String!, 
+    ): Post
+
+    addGoal(
+      goal: Int!
+    ): User
+
+    deletePost(
+      id: String
+    ): Post
   }
 `;
 
