@@ -17,7 +17,7 @@ const postSchema = new Schema(
       required: true,
     },
     user_id: {
-      type: String,
+      type: Number,
       required: true,
     }
   },
