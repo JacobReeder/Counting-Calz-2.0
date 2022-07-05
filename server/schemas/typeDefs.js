@@ -8,26 +8,32 @@ const typeDefs = gql`
     username: String
     email: String
     posts: [Post]
-   
+    
   }
 
   type Post {
     _id: ID
     description: String
-    user_id: String
+    user_id: String  
   }
-  
- 
+
   type Query {
     users: [User]
-    user(username: String!): User
-    posts(username: String): [Post]
+    user(email: String!): User
+    posts(email: String): [Post]
     post(_id: ID!): Post
   }
 `;
 
 
-//calories: Int   **Put back into Post once completed
-//    date_time: String **Put back into post once completed
-// export the typeDefs
+//    Note: Post cannot accept -  
+        //**Put back into Post once completed
+        // date_time: String **Put back into post once completed
+
+//    Note: User cannot accept -
+        //**Put back into Post once completed
+        //posts: [Post]         
+        //goal: Int
+
+
 module.exports = typeDefs;
