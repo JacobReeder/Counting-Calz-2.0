@@ -16,9 +16,6 @@ const typeDefs = gql`
     description: String
     user_id: String  
   }
-<<<<<<< HEAD
-
-=======
   
   type Auth {
     token: ID!
@@ -33,7 +30,6 @@ const typeDefs = gql`
     user_id: String
   }
  
->>>>>>> da28a97d0dd722faeaaa1a27104e34447521ca80
   type Query {
     users: [User]
     user(email: String!): User
