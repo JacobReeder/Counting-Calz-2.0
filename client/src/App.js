@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Nav from './components/Nav'
 import Goal from './components/Goal'
 import Posts from './components/Posts'
 import MealsPage from './components/Meals-Page'
+import PostModal from './components/PostModal'
 
 function App() {
 
   const [ currentPage, setCurrentPage ] = useState('dashboard')
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function toggleModal() {
+    setIsModalOpen(!isModalOpen);
+  };
 
   const renderPage = () => {
     if (currentPage === 'dashboard') {
@@ -16,6 +21,17 @@ function App() {
         <>
           <Goal />
           <Posts />
+          <div>
+            {isModalOpen && (
+              <PostModal onClose={toggleModal} />
+            )}
+            <button
+              id="new-btn"
+              className="new-post"
+              onClick={() => toggleModal()}>
+                +
+            </button>
+          </div>
         </>
       )
     }
