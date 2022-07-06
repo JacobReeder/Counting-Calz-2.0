@@ -39,11 +39,12 @@ const MealsPage = () => {
     <div className='meals-div'>
       <div className='img-title'>
         <img alt='featured meal' className='meal-img' src='https://picsum.photos/300' />
-        <h3 ref={titleEl} className='meal-title'></h3>
+        <h3 ref={titleEl} className='meal-title'>TEST MEAL</h3>
       </div>
 
       <div className='ing-btns'>
-        <h4 ref={countryEl} className="country"></h4>
+        <h4 ref={countryEl} className="country">American Meal</h4>
+        <h5 ref={tags} className="tags">Spicy, Has Nuts</h5>
         <div className='btns-wrap'>
           <button className="try-meal-btn">
             <a ref={linkEl} className="meal-link">
