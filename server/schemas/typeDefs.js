@@ -56,7 +56,7 @@ const typeDefs = gql`
     ): Auth
 
     addPost(
-      userId: String!,
+      user_Id: String!,
       description: String!, 
       calories: Int!, 
       date_time: String!, 
