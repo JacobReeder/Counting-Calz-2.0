@@ -7,7 +7,8 @@
   --4th-Color: #4C5F6B;
   --title-font: 'Bebas Neue', cursive;
   --main-font: 'Montserrat', sans-serif;
-  --text-shadow: 1px 1px rgba(0,0,0,0.4)
+  --text-shadow: 1px 1px rgba(0,0,0,0.4);
+  --box-shadow: 1px 5px 5px rgba(0,0,0,0.5)
 }
 
 body {
@@ -70,12 +71,22 @@ nav a {
   width: 85vw;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
+  box-shadow: var(--box-shadow);
 }
 
 .calorie-goal {
   color: var(--2nd-Color);
   text-shadow: var(--text-shadow);
   font-size: 2.5rem;
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+
+.calorie-dec {
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+  font-size: 1.5rem;
+  margin-top: 0;
   text-align: center;
 }
 
@@ -99,4 +110,39 @@ nav a {
   padding: 1.5rem;
   justify-self: center;
   width: 80vw;
+  display: grid;
+  box-shadow: var(--box-shadow);
+}
+
+.posts-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-el {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: white;
+  border-radius: 1rem 1rem 1rem;
+  padding: 1rem;
+  max-width: 100%;
+  box-shadow: var(--box-shadow);
+}
+
+.calories {
+  background-color: var(--2nd-Color);
+  color: var(--1st-Color);
+  font-weight: bold;
+  text-shadow: var(--text-shadow);
+  font-family: var(--title-font);
+  border-radius: 1rem 1rem 1rem;
+  height: 25%;
+  width: 50%;
+  justify-self: end;
+  margin: .5rem;
+  text-align: center;
+}
+
+.post-date {
+  margin-top: .3rem;
 }
