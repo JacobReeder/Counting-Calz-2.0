@@ -113,6 +113,7 @@ nav a {
   padding: 1.5rem;
   justify-self: center;
   width: 80vw;
+  
 }
 
 .modalBackdrop {
@@ -148,10 +149,6 @@ nav a {
   border: none;
   background-color: var(--2nd-Color);
   color: white;
-}
-
-display: grid;
-  box-shadow: var(--box-shadow);
 }
 
 .posts-list {
