@@ -15,16 +15,21 @@ const MealsPage = () => {
     fetch(url)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.meals[0]);
 
         if (res.meals[0].strSource !== '') {
-          titleEl.value = res.meals[0].strMeal;
+          console.log(res.meals[0]);
+
+          titleEl = res.meals[0].strMeal;
           linkEl = res.meals[0].strSource;
           imageEl = res.meals[0].strMealThumb;
           countryEl = res.meals[0].strArea;
           tags = res.meals[0].strTags;
-          console.log(titleEl, linkEl, imageEl, countryEl, tags);
-
+          
+          console.log(titleEl);
+          console.log(linkEl);
+          console.log(imageEl);
+          console.log(countryEl);
+          console.log(tags);
 
         } else {
           rndMeal();
