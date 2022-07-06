@@ -1,39 +1,63 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 
 const MealsPage = () => {
 
-  const handleRefreshBtn = () => {
-    document.location.reload();
+  var titleEl = useRef(null);
+  var linkEl = useRef(null);
+  var countryEl = useRef(null);
+  var imageEl = useRef(null);
+  var tags = useRef(null);
+
+  function rndMeal() {
+    // const url = 'https://www.themealdb.com/api/json/v1/9973533/random.php';
+    const url = 'https://www.themealdb.com/api/json/v1/1/random.php';
+  
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.meals[0]);
+
+        if (res.meals[0].strSource !== '') {
+          titleEl.value = res.meals[0].strMeal;
+          linkEl = res.meals[0].strSource;
+          imageEl = res.meals[0].strMealThumb;
+          countryEl = res.meals[0].strArea;
+          tags = res.meals[0].strTags;
+          console.log(titleEl, linkEl, imageEl, countryEl, tags);
+
+
+        } else {
+          rndMeal();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
   return (
     <div className='meals-div'>
-
       <div className='img-title'>
         <img alt='featured meal' className='meal-img' src='https://picsum.photos/300' />
-        <h3 className='meal-title'>TEST MEAL</h3>
+        <h3 ref={titleEl} className='meal-title'></h3>
       </div>
 
       <div className='ing-btns'>
-        <ul className='list-ingredients'>
-          <li className='ingredient'>Beets</li>
-          <li className='ingredient'>Deets</li>
-          <li className='ingredient'>Reets</li>
-          <li className='ingredient'>Seets</li>
-          <li className='ingredient'>Leets</li>
-          <li className='ingredient'>Keets</li>
-        </ul>
+        <h4 ref={countryEl} className="country"></h4>
         <div className='btns-wrap'>
-          <button className='try-meal-btn'>Try This Meal</button>
+          <button className="try-meal-btn">
+            <a ref={linkEl} className="meal-link">
+                Try This Meal
+            </a>
+          </button>
           <button 
           className='refresh-meal-btn'
-          onClick={() => {
-            handleRefreshBtn()
-          }}>
+          onClick={rndMeal()}
+          >
             Refresh
           </button>
         </div>
       </div>
-
     </div>
   )
 }
