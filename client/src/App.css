@@ -108,12 +108,13 @@ nav a {
 }
 
 .posts-div {
-  background-color: #6DAEDB;
+  background-color: var(--3rd-Color);
   border-radius: 1rem 1rem 1rem;
   padding: 1.5rem;
   justify-self: center;
   width: 80vw;
-  
+  box-shadow: var(--box-shadow);
+  display: grid;
 }
 
 .modalBackdrop {
