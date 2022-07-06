@@ -57,6 +57,7 @@ nav a {
 
 .active-nav {
   color: var(--4th-Color);
+  font-weight: bold;
 }
 
 .main-wrap {
@@ -223,4 +224,8 @@ nav a {
   width: 90%;
   justify-content: center;
   /* list-style-type: none; */
+}
+
+.ingredient {
+  color: var(--4th-Color);
 }
