@@ -34,6 +34,7 @@ nav {
   grid-template-columns: repeat(3, 1fr);
   align-self: center;
   gap: 1rem;
+  padding-bottom: .7rem
 }
 
 nav a {
@@ -145,4 +146,79 @@ nav a {
 
 .post-date {
   margin-top: .3rem;
+  color: var(--4th-Color);
+}
+
+.meals-div {
+  background-color: var(--3rd-Color);
+  width: 90vw;
+  justify-self: center;
+  border-radius: 1rem 1rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.img-title {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.meal-img {
+  max-width: 90%;
+  margin-top: 1rem;
+  justify-self: center;
+}
+
+.meal-title {
+  font-size: 2.5rem;
+  text-align: center;
+  justify-self: center;
+  font-family: var(--title-font);
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+  margin: 1rem;
+}
+
+.ing-btns {
+  display: grid;
+}
+
+.btns-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 2rem;
+}
+
+.try-meal-btn {
+  background-color: var(--2nd-Color);
+  border: none;
+  padding: 0.5rem;
+  color: var(--4th-Color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: var(--text-shadow);
+  width: 95%;
+  border-radius: 1rem 1rem 1rem;
+  justify-self: center;
+}
+
+.refresh-meal-btn {
+  background-color: var(--2nd-Color);
+  border: none;
+  padding: 0.5rem;
+  color: var(--4th-Color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: var(--text-shadow);
+  width: 95%;
+  border-radius: 1rem 1rem 1rem;
+  justify-self: center;
+}
+
+.list-ingredients {
+  width: 90%;
+  justify-content: center;
+  /* list-style-type: none; */
 }
