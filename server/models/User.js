@@ -26,8 +26,8 @@ const userSchema = new Schema(
       }
     ],
     goal: {
-     type: Number,
-   }
+      type: Number,
+    }
    
   },
   {

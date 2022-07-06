@@ -52,8 +52,6 @@ const resolvers = {
       "password": "12345",
       "username": "null"
     } */
-
-    // works
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -70,6 +68,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
     /*  Variables
     {
       "email": "null@test.com",
@@ -100,7 +99,6 @@ const resolvers = {
       "dateTime": "12345",
     } */
 
-
     // WIP
     // updatePost: async (parent, postId, context) => {
     //   if (context.user) {
@@ -115,6 +113,7 @@ const resolvers = {
 
     // WIP
     addGoal: async (parent, context) => {
+
       // if (context.user) {
 
       // }
