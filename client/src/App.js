@@ -8,7 +8,7 @@ import MealsPage from './components/Meals-Page'
 
 function App() {
 
-  const [ currentPage, setCurrentPage ] = useState('history')
+  const [ currentPage, setCurrentPage ] = useState('meals')
 
   const renderPage = () => {
     if (currentPage === 'dashboard') {

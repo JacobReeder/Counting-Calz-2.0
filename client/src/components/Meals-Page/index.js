@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
 const MealsPage = () => {
+
+  const handleRefreshBtn = () => {
+    document.location.reload();
+  }
   return (
     <div className='meals-div'>
 
@@ -20,7 +24,13 @@ const MealsPage = () => {
         </ul>
         <div className='btns-wrap'>
           <button className='try-meal-btn'>Try This Meal</button>
-          <button className='refresh-meal-btn'>Refresh</button>
+          <button 
+          className='refresh-meal-btn'
+          onClick={() => {
+            handleRefreshBtn()
+          }}>
+            Refresh
+          </button>
         </div>
       </div>
 
