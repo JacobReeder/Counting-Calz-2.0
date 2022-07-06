@@ -1,0 +1,231 @@
+/* root and utils */
+
+:root {
+  --1st-Color: #C9E4CA;
+  --2nd-Color: #EB9486;
+  --3rd-Color: #6DAEDB;
+  --4th-Color: #4C5F6B;
+  --title-font: 'Bebas Neue', cursive;
+  --main-font: 'Montserrat', sans-serif;
+  --text-shadow: 1px 1px rgba(0,0,0,0.4);
+  --box-shadow: 1px 5px 5px rgba(0,0,0,0.5)
+}
+
+body {
+  font-family: var(--main-font);
+  background-color: var(--4th-Color);
+}
+
+body a {
+  text-decoration: none;
+}
+
+/* elements */
+
+header {
+  background-color: var(--3rd-Color);
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  margin-bottom: 1rem;
+  box-shadow: var(--box-shadow);
+}
+
+nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: center;
+  gap: 1rem;
+  padding-bottom: .7rem
+}
+
+nav a {
+  color: var(--1st-Color);
+  align-self: center;
+  text-align: center;
+}
+
+/* classes */
+
+.site-title {
+  font-size: 5vh;
+  text-align: center;
+  justify-self: center;
+  font-family: var(--title-font);
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+}
+
+.active-nav {
+  color: var(--4th-Color);
+  font-weight: bold;
+}
+
+.main-wrap {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.goal-div {
+  background-color: #6DAEDB;
+  border-radius: 1rem 1rem 1rem;
+  padding: 1rem;
+  justify-self: center;
+  width: 85vw;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  box-shadow: var(--box-shadow);
+}
+
+.calorie-goal {
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+
+.calorie-dec {
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+  font-size: 1.5rem;
+  margin-top: 0;
+  text-align: center;
+}
+
+.edit-goal-btn {
+  background-color: var(--2nd-Color);
+  border: none;
+  padding: 0.5rem;
+  color: var(--4th-Color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: var(--text-shadow);
+  /* max-width: 25%; */
+  /* justify-self: end; */
+  border-radius: 1rem 1rem 1rem;
+}
+
+.posts-div {
+  background-color: #6DAEDB;
+  border-radius: 1rem 1rem 1rem;
+  padding: 1.5rem;
+  justify-self: center;
+  width: 80vw;
+  display: grid;
+  box-shadow: var(--box-shadow);
+}
+
+.posts-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-el {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: white;
+  border-radius: 1rem 1rem 1rem;
+  padding: 1rem;
+  max-width: 100%;
+  box-shadow: var(--box-shadow);
+}
+
+.calories {
+  background-color: var(--2nd-Color);
+  color: var(--1st-Color);
+  font-weight: bold;
+  text-shadow: var(--text-shadow);
+  font-family: var(--title-font);
+  border-radius: 1rem 1rem 1rem;
+  height: 25%;
+  width: 50%;
+  justify-self: end;
+  margin: .5rem;
+  text-align: center;
+}
+
+.post-date {
+  margin-top: .3rem;
+  color: var(--4th-Color);
+}
+
+.meals-div {
+  background-color: var(--3rd-Color);
+  width: 90vw;
+  justify-self: center;
+  border-radius: 1rem 1rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  box-shadow: var(--box-shadow);
+}
+
+.img-title {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.meal-img {
+  max-width: 90%;
+  margin-top: 1rem;
+  justify-self: center;
+}
+
+.meal-title {
+  font-size: 2.5rem;
+  text-align: center;
+  justify-self: center;
+  font-family: var(--title-font);
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+  margin: 1rem;
+}
+
+.ing-btns {
+  display: grid;
+}
+
+.btns-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 2rem;
+}
+
+.try-meal-btn {
+  background-color: var(--2nd-Color);
+  border: none;
+  padding: 0.5rem;
+  color: var(--4th-Color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: var(--text-shadow);
+  width: 95%;
+  border-radius: 1rem 1rem 1rem;
+  justify-self: center;
+}
+
+.refresh-meal-btn {
+  background-color: var(--2nd-Color);
+  border: none;
+  padding: 0.5rem;
+  color: var(--4th-Color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: var(--text-shadow);
+  width: 95%;
+  border-radius: 1rem 1rem 1rem;
+  justify-self: center;
+}
+
+.list-ingredients {
+  width: 90%;
+  justify-content: center;
+  /* list-style-type: none; */
+}
+
+.ingredient {
+  color: var(--4th-Color);
+}
