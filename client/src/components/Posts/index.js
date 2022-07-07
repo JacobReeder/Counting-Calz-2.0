@@ -9,7 +9,7 @@ const Posts = ({ userPosts }) => {
       <ul className="posts-list">
         {userPosts &&
           userPosts.map((post) => (
-            <li className="list-el">
+            <li key={post._id} className="list-el">
               <div className="post-date-desc-wrap">
                 <h6 className="post-date">{post.date_time}</h6>
                 <h5 className="post-description">{post.description}</h5>
