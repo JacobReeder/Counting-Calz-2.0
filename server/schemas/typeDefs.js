@@ -7,6 +7,7 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(username: String!): User
+    goal: Int
   }
 
   type User {
@@ -14,7 +15,7 @@ const typeDefs = gql`
     username: String
     email: String
     posts: [Post]
-    
+    goal: Int
   }
 
   type Post {
@@ -53,6 +54,7 @@ const typeDefs = gql`
       username: String!, 
       email: String!, 
       password: String!
+      goal: Int
     ): Auth
 
     addPost(
