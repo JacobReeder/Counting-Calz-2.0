@@ -32,7 +32,7 @@ header {
 
 nav {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-columns: repeat(4, 1fr); */
   align-self: center;
   gap: 1rem;
   padding-bottom: .7rem
@@ -53,6 +53,14 @@ nav a {
   font-family: var(--title-font);
   color: var(--2nd-Color);
   text-shadow: var(--text-shadow);
+}
+
+.nav-tabs {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.nav-tabs-sm {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .active-nav {
@@ -107,6 +115,21 @@ nav a {
   border-radius: 1rem 1rem 1rem;
 }
 
+#btn-style {
+    background-color: var(--2nd-Color);
+    border: none;
+    padding: 0.5rem;
+    color: var(--4th-Color);
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: var(--text-shadow);
+    /* max-width: 25%; */
+    /* justify-self: end; */
+    border-radius: 1rem 1rem 1rem;
+    margin: 8px 8px 0 0;
+}
+
 .posts-div {
   background-color: var(--3rd-Color);
   border-radius: 1rem 1rem 1rem;
@@ -117,12 +140,21 @@ nav a {
   display: grid;
 }
 
+.backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+
 .modalContainer {
   padding: 15px;
   background: var(--3rd-Color);
   overflow: auto;
   position: fixed;
-  z-index: 100;
   top: 10rem;
   left: 1.5rem;
   right: 1.5rem;
@@ -141,6 +173,13 @@ nav a {
   text-align: center;
   font-weight: 600;
   margin: 10px;
+  text-decoration: none;
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+}
+
+.modal-title-active {
+  color: var(--1st-Color);
 }
 
 #new-btn {
@@ -284,3 +323,6 @@ nav a {
   text-align: center;
   color: var(--4th-Color);
 }
+
+/* media queries */
+

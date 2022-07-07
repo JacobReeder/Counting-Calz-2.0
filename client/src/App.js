@@ -5,15 +5,33 @@ import Goal from './components/Goal'
 import Posts from './components/Posts'
 import MealsPage from './components/Meals-Page'
 import PostModal from './components/PostModal'
+import LoginModal from './components/LoginModal'
+import SignupModal from './components/SignupModal'
 
 function App() {
 
-  const [ currentPage, setCurrentPage ] = useState('meals')
+  const [ currentPage, setCurrentPage ] = useState('dashboard')
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(false);
+  const [ isLoginModalOpen, setIsLoginModalOpen ] = useState(false);
+  const [ showLoginNav, setShowLoginNav ] = useState(true);
 
   function toggleModal() {
     setIsModalOpen(!isModalOpen);
+    setIsBlurred(!isBlurred);
   };
+
+  function toggleLoginModal() {
+    setIsLoginModalOpen(!isLoginModalOpen);
+  }
+
+  function toggleLoginNav() {
+    setShowLoginNav(!showLoginNav);
+    if (showLoginNav) {
+      setCurrentPage('meals')
+      return
+    }
+  }
 
   const renderPage = () => {
     if (currentPage === 'dashboard') {
@@ -25,12 +43,18 @@ function App() {
             {isModalOpen && (
               <PostModal onClose={toggleModal} />
             )}
+            
             <button
               id="new-btn"
               className="new-post"
               onClick={() => toggleModal()}>
                 +
             </button>
+          </div>
+          <div>
+            {isLoginModalOpen && (
+              <LoginModal onClose={toggleLoginModal}/>
+            )}
           </div>
         </>
       )
@@ -49,7 +73,7 @@ function App() {
     <>
       <header>
         <a href="/" className='site-title'>The Cal-Zone</a>
-        <Nav handlePageChange={handlePageChange} currentPage={currentPage} />
+        <Nav showLoginNav={showLoginNav} handlePageChange={handlePageChange} currentPage={currentPage} toggleLoginModal={toggleLoginModal} />
       </header>
       <main>
         <div className='main-wrap'>
