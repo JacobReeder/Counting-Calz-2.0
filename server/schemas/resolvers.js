@@ -110,7 +110,7 @@ const resolvers = {
     //   }
     // },
 
-    // WIP
+    // Works
     addGoal: async (parent, { goal }, context) => {
 
       if (context.user) {
@@ -125,7 +125,7 @@ const resolvers = {
     },
     /*  Variables
     {
-      
+      goal: 123
     } */
 
     // Works
