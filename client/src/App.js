@@ -26,7 +26,7 @@ function App() {
   // Need to add this into the page
   // <ApolloProvider client={client}></ApolloProvider>
 
-  const [ currentPage, setCurrentPage ] = useState('dashboard')
+  const [ currentPage, setCurrentPage ] = useState('meals')
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function toggleModal() {
@@ -60,7 +60,7 @@ function App() {
       return <MealsPage />
     }
   }
-
+// =======================================================================================npm i jwt-decode
   const handlePageChange = (page) => setCurrentPage(page);
   
   return (
