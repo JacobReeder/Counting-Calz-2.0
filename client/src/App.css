@@ -273,3 +273,8 @@ nav a {
 .ingredient {
   color: var(--4th-Color);
 }
+
+.meal-link {
+  text-decoration: none;
+  color: var(--4th-Color);
+}
