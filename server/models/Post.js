@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat')
+const { format_date } = require('../utils/dateFormat')
 
 const postSchema = new Schema(
   {
@@ -16,16 +16,12 @@ const postSchema = new Schema(
    date_time: {
      type: String,
      required: true,
-     get: (dateData) => dateFormat.apply(dateData)
+     get: (dateData) => format_date(dateData)
    },
     user_id: {
       type: String,
       required: true,
     },
-    user_id: {
-      type: Number,
-      required: true,
-    }
   },
   {
     toJSON: {

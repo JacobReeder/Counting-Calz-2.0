@@ -319,5 +319,10 @@ nav a {
   color: var(--4th-Color);
 }
 
+.country {
+  text-align: center;
+  color: var(--4th-Color);
+}
+
 /* media queries */
 

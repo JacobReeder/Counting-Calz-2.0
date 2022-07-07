@@ -77,20 +77,19 @@ const resolvers = {
 
     // WIP
     addPost: async (parent, args, context) => {
-      // if (context.user) {
+      if (context.user) {
+        const post = await Post.create({ ...args, user_id: context.user._id })
+          
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { posts: post._id } },
+          { new: true }
+        );
+  
+        return post
+      }
+      throw new AuthenticationError('You need to be logged in!');
 
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
-
-      const post = await Post.create({ ...args, username: context.user._id })
-        
-      await User.findByIdAndUpdate(
-        { _id: context.user._id || args.userId },
-        { $push: { posts: post._id } },
-        { new: true }
-      );
-
-      return post
     },
     /*  Variables
     {  
@@ -112,19 +111,18 @@ const resolvers = {
     // },
 
     // WIP
-    addGoal: async (parent, context) => {
+    addGoal: async (parent, args, context) => {
 
-      // if (context.user) {
+      if (context.user) {
+        const updatedGoal = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { goal: context.goal }},
+          { new: true },
+        )
+        return updatedGoal
+      }
+      throw new AuthenticationError('You need to be logged in!');
 
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
-
-      const updatedGoal = await User.findByIdAndUpdate(
-        { _id: context.user._id },
-        { $push: { goal: context.goal }},
-        { new: true },
-      )
-      return updatedGoal
     },
     /*  Variables
     {
