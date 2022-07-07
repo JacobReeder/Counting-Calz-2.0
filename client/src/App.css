@@ -32,7 +32,7 @@ header {
 
 nav {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-columns: repeat(4, 1fr); */
   align-self: center;
   gap: 1rem;
   padding-bottom: .7rem
@@ -53,6 +53,14 @@ nav a {
   font-family: var(--title-font);
   color: var(--2nd-Color);
   text-shadow: var(--text-shadow);
+}
+
+.nav-tabs {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.nav-tabs-sm {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .active-nav {
@@ -165,6 +173,13 @@ nav a {
   text-align: center;
   font-weight: 600;
   margin: 10px;
+  text-decoration: none;
+  color: var(--2nd-Color);
+  text-shadow: var(--text-shadow);
+}
+
+.modal-title-active {
+  color: var(--1st-Color);
 }
 
 #new-btn {
@@ -303,3 +318,6 @@ nav a {
   text-decoration: none;
   color: var(--4th-Color);
 }
+
+/* media queries */
+
