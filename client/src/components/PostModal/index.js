@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_POST } from '../utils/mutations';
+import { ADD_POST } from '../../utils/mutations';
 
 const PostModal = ({ onClose }) => {
 
