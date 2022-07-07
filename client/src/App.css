@@ -107,6 +107,21 @@ nav a {
   border-radius: 1rem 1rem 1rem;
 }
 
+#btn-style {
+    background-color: var(--2nd-Color);
+    border: none;
+    padding: 0.5rem;
+    color: var(--4th-Color);
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: var(--text-shadow);
+    /* max-width: 25%; */
+    /* justify-self: end; */
+    border-radius: 1rem 1rem 1rem;
+    margin: 8px 8px 0 0;
+}
+
 .posts-div {
   background-color: var(--3rd-Color);
   border-radius: 1rem 1rem 1rem;
@@ -117,12 +132,21 @@ nav a {
   display: grid;
 }
 
+.backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+
 .modalContainer {
   padding: 15px;
   background: var(--3rd-Color);
   overflow: auto;
   position: fixed;
-  z-index: 100;
   top: 10rem;
   left: 1.5rem;
   right: 1.5rem;
@@ -155,6 +179,7 @@ nav a {
   border: none;
   background-color: var(--2nd-Color);
   color: white;
+  box-shadow: var(--box-shadow);
 }
 
 .btn-padding {

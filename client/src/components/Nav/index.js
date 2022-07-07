@@ -18,9 +18,10 @@ const Nav = (props) => {
 
       {/* <a href="#login" 
       onClick={() => handlePageChange('login')}
-      className={currentPage === 'login' ? 'active-nav' : ''}>Login</a>
+      handlePageChange={handlePageChange} currentPage={currentPage}
+      className={currentPage === 'login' ? 'active-nav' : ''}>Login</a> */}
 
-      <a href="#logout" 
+      {/* <a href="#logout" 
       onClick={() => handlePageChange('logout')}
       className={currentPage === 'logout' ? 'active-nav' : ''}>Logout</a> */}
 

@@ -5,14 +5,18 @@ import Goal from './components/Goal'
 import Posts from './components/Posts'
 import MealsPage from './components/Meals-Page'
 import PostModal from './components/PostModal'
+import LoginModal from './components/LoginModal'
+import SignupModal from './components/SignupModal'
 
 function App() {
 
-  const [ currentPage, setCurrentPage ] = useState('meals')
+  const [ currentPage, setCurrentPage ] = useState('dashboard')
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(false);
 
   function toggleModal() {
     setIsModalOpen(!isModalOpen);
+    setIsBlurred(!isBlurred);
   };
 
   const renderPage = () => {
@@ -25,6 +29,7 @@ function App() {
             {isModalOpen && (
               <PostModal onClose={toggleModal} />
             )}
+            ()
             <button
               id="new-btn"
               className="new-post"
@@ -40,6 +45,12 @@ function App() {
     }
     if (currentPage === 'meals') {
       return <MealsPage />
+    }
+    if (currentPage === 'login') {
+      return <LoginModal />
+    }
+    if (currentPage === 'signup') {
+      return <SignupModal />
     }
   }
 // =======================================================================================npm i jwt-decode
