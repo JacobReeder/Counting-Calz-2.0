@@ -1,5 +1,8 @@
 import React from "react";
 
+import { useMutation } from '@apollo/client';
+import { ADD_GOAL } from '../utils/mutations';
+
 const Goal = () => {
   return (
     <div className="goal-div">

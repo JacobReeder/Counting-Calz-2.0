@@ -1,6 +1,8 @@
 import React from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_POST } from '../utils/mutations';
 
-const PostModal = ({ onClose, currentPage, handlePageChange }) => {
+const PostModal = ({ onClose }) => {
 
   return (
     <div className="backdrop">

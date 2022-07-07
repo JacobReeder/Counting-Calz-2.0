@@ -110,14 +110,13 @@ const resolvers = {
     //   }
     // },
 
-    // WIP
-    addGoal: async (parent, args, context) => {
+    // Works
+    addGoal: async (parent, { goal }, context) => {
 
       if (context.user) {
         const updatedGoal = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { goal: context.goal }},
-          { new: true },
+          { goal: goal },
         )
         return updatedGoal
       }
@@ -126,17 +125,21 @@ const resolvers = {
     },
     /*  Variables
     {
-      
+      goal: 123
     } */
 
     // Works
-    deletePost: async (parent, { id }) => {
-      return Post.findByIdAndDelete(id)
+    deletePost: async (parent, { id }, context) => {
+      if (context.user) {
+        console.log('Post Deleted')
+        return Post.findByIdAndDelete(id)
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     /*  
     Variables   
     {
-      "deletePostId": "62c24947f43d0e792c2619a1",
+      "deletePostId": "<post id>",
     } */
   }
 };
