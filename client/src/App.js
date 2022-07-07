@@ -24,11 +24,11 @@ const client = new ApolloClient({
 
 
 function App() {
-  const [ currentPage, setCurrentPage ] = useState('dashboard')
-  const [ isModalOpen, setIsModalOpen ] = useState(false);
-  const [ isBlurred, setIsBlurred ] = useState(false);
-  const [ isLoginModalOpen, setIsLoginModalOpen ] = useState(false);
-  const [ showLoginNav, setShowLoginNav ] = useState(true);
+  const [currentPage, setCurrentPage] = useState('dashboard')
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [showLoginNav, setShowLoginNav] = useState(true);
 
   // queries
   const { loading, data } = useQuery(QUERY_ME);
@@ -57,38 +57,44 @@ function App() {
     if (currentPage === 'dashboard') {
       return (
         <>
-          <Goal userGoal={userGoal} userName={userName}/>
-          <Posts userPosts={userPosts}/>
+          {loading ? (
+            <div className='posts-div'>Loading...</div>
+          ) : (
+            <>
+              <Goal userGoal={userGoal} userName={userName} />
+              <Posts userPosts={userPosts} />
+            </>
+          )}
           <div>
             {isModalOpen && (
               <PostModal onClose={toggleModal} />
             )}
-            
+
             <button
               id="new-btn"
               className="new-post"
               onClick={() => toggleModal()}>
-                +
+              +
             </button>
           </div>
           <div>
             {isLoginModalOpen && (
-              <LoginModal onClose={toggleLoginModal}/>
+              <LoginModal onClose={toggleLoginModal} />
             )}
           </div>
         </>
       )
     }
     if (currentPage === 'history') {
-      return <Posts userPosts={userPosts}/>
+      return <Posts userPosts={userPosts} />
     }
     if (currentPage === 'meals') {
       return <MealsPage />
     }
   }
-// =======================================================================================npm i jwt-decode
+  // =======================================================================================npm i jwt-decode
   const handlePageChange = (page) => setCurrentPage(page);
-  
+
   return (
     <>
       <ApolloProvider client={client}>
