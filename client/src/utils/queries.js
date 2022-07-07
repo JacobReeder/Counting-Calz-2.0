@@ -11,6 +11,7 @@ export const QUERY_USERS = gql`
         _id
         description
         calories
+        date_time
       }
     }
   }

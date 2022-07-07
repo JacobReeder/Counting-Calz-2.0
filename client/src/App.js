@@ -13,26 +13,28 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ME } from './utils/queries';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
-// || UNCOMMENT WHEN AUTH WORKING ||
-// const client = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   cache: new InMemoryCache(),
-// });
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
 
 
 
 function App() {
-  // Need to add this into the page
-  // <ApolloProvider client={client}></ApolloProvider>
-
   const [ currentPage, setCurrentPage ] = useState('dashboard')
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isBlurred, setIsBlurred] = useState(false);
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const [ isBlurred, setIsBlurred ] = useState(false);
   const [ isLoginModalOpen, setIsLoginModalOpen ] = useState(false);
   const [ showLoginNav, setShowLoginNav ] = useState(true);
+
+  // queries
+  const { loading, data } = useQuery(QUERY_ME);
+  const userGoal = data?.me.goal || '';
+  const userPosts = data?.me.posts || [];
+  const userName = data?.me.username || '';
 
   function toggleModal() {
     setIsModalOpen(!isModalOpen);
@@ -55,8 +57,8 @@ function App() {
     if (currentPage === 'dashboard') {
       return (
         <>
-          <Goal />
-          <Posts />
+          <Goal userGoal={userGoal} userName={userName}/>
+          <Posts userPosts={userPosts}/>
           <div>
             {isModalOpen && (
               <PostModal onClose={toggleModal} />
@@ -78,7 +80,7 @@ function App() {
       )
     }
     if (currentPage === 'history') {
-      return <Posts />
+      return <Posts userPosts={userPosts}/>
     }
     if (currentPage === 'meals') {
       return <MealsPage />
@@ -89,15 +91,17 @@ function App() {
   
   return (
     <>
-      <header>
-        <a href="/" className='site-title'>The Cal-Zone</a>
-        <Nav showLoginNav={showLoginNav} handlePageChange={handlePageChange} currentPage={currentPage} toggleLoginModal={toggleLoginModal} />
-      </header>
-      <main>
-        <div className='main-wrap'>
-          {renderPage()}
-        </div>
-      </main>
+      <ApolloProvider client={client}>
+        <header>
+          <a href="/" className='site-title'>The Cal-Zone</a>
+          <Nav showLoginNav={showLoginNav} handlePageChange={handlePageChange} currentPage={currentPage} toggleLoginModal={toggleLoginModal} />
+        </header>
+        <main>
+          <div className='main-wrap'>
+            {renderPage()}
+          </div>
+        </main>
+      </ApolloProvider>
     </>
   );
 }
