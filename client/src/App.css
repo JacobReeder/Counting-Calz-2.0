@@ -278,3 +278,8 @@ nav a {
   text-decoration: none;
   color: var(--4th-Color);
 }
+
+.country {
+  text-align: center;
+  color: var(--4th-Color);
+}
