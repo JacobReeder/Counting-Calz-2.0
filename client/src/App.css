@@ -117,25 +117,30 @@ nav a {
   display: grid;
 }
 
-.modalBackdrop {
+.modalContainer {
+  padding: 15px;
   background: var(--3rd-Color);
   overflow: auto;
   position: fixed;
-  z-index: 1;
-  
+  z-index: 100;
+  top: 10rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  border-radius: 10px;
+  border: solid 1px black;
 }
 
-.modalContainer {
-  border-radius: 5px;
-  max-width: 100%;
-  padding: 15px;
+.modalContainer input {
+  margin: 8px 0;
+  width: 50%;
+  border-radius: 4px;
 }
 
 .modalTitle {
   font-size: 32px;
   text-align: center;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin: 10px;
 }
 
 #new-btn {
@@ -150,6 +155,10 @@ nav a {
   border: none;
   background-color: var(--2nd-Color);
   color: white;
+}
+
+.btn-padding {
+  margin: 8px 8px 0 0;
 }
 
 .posts-list {
@@ -262,5 +271,10 @@ nav a {
 }
 
 .ingredient {
+  color: var(--4th-Color);
+}
+
+.meal-link {
+  text-decoration: none;
   color: var(--4th-Color);
 }

@@ -8,7 +8,7 @@ import PostModal from './components/PostModal'
 
 function App() {
 
-  const [ currentPage, setCurrentPage ] = useState('dashboard')
+  const [ currentPage, setCurrentPage ] = useState('meals')
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function toggleModal() {
@@ -42,7 +42,7 @@ function App() {
       return <MealsPage />
     }
   }
-
+// =======================================================================================npm i jwt-decode
   const handlePageChange = (page) => setCurrentPage(page);
   
   return (
