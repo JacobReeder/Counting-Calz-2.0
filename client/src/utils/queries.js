@@ -44,7 +44,5 @@ export const QUERY_POST = gql`
     }
   }
 `
-// not sure if we need to query goals
-export const QUERY_GOAL = gql`
-`
+
 
