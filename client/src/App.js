@@ -9,21 +9,16 @@ import LoginModal from './components/LoginModal'
 
 // apollo creation
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-<<<<<<< HEAD
 // import { useQuery } from '@apollo/client';
 // import { QUERY_ME } from './utils/queries';
 
 import { setContext } from '@apollo/client/link/context';
-=======
-import { useQuery } from '@apollo/client';
-import { QUERY_ME } from './utils/queries';
->>>>>>> tneswick
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
-<<<<<<< HEAD
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -38,19 +33,8 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-=======
-// || UNCOMMENT WHEN AUTH WORKING ||
-// const client = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   cache: new InMemoryCache(),
-// });
->>>>>>> tneswick
-
-
 
 function App() {
-  // Need to add this into the page
-  // <ApolloProvider client={client}></ApolloProvider>
 
   const [ currentPage, setCurrentPage ] = useState('dashboard')
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,6 +60,7 @@ function App() {
   }
 
   const renderPage = () => {
+    
     if (currentPage === 'dashboard') {
       return (
         <>
@@ -113,15 +98,17 @@ function App() {
   
   return (
     <>
-      <header>
-        <a href="/" className='site-title'>The Cal-Zone</a>
-        <Nav showLoginNav={showLoginNav} handlePageChange={handlePageChange} currentPage={currentPage} toggleLoginModal={toggleLoginModal} />
-      </header>
-      <main>
-        <div className='main-wrap'>
-          {renderPage()}
-        </div>
-      </main>
+      <ApolloProvider client={client}>
+        <header>
+          <a href="/" className='site-title'>The Cal-Zone</a>
+          <Nav showLoginNav={showLoginNav} handlePageChange={handlePageChange} currentPage={currentPage} toggleLoginModal={toggleLoginModal} />
+        </header>
+        <main>
+          <div className='main-wrap'>
+            {renderPage()}
+          </div>
+        </main>
+      </ApolloProvider>
     </>
   );
 }
