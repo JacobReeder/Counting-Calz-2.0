@@ -67,12 +67,6 @@ const LoginModal = ({ onClose, currentPage, handlePageChange }) => {
           </a>
           <form id="login-form">
             <div>
-<<<<<<< HEAD
-              <label htmlFor='username'>Username</label>
-              <br></br>
-              <input className='modal-input' type='text' name='username' />
-=======
->>>>>>> 5d676113de97a92bdb7bd9ce349794c92b44fc22
               <label htmlFor="email">Email</label>
               <br></br>
               <input className="modal-input" type="text" name="email" />
