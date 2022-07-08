@@ -7,17 +7,31 @@ import MealsPage from './components/Meals-Page'
 import PostModal from './components/PostModal'
 import LoginModal from './components/LoginModal'
 
+// adding random imports from the deep-thoughts App.js to possibly help
+import { setContext } from '@apollo/client/link/context';
+
+
 // apollo creation
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { useQuery } from '@apollo/client';
-import { QUERY_ME } from './utils/queries';
+import { QUERY_ME, QUERY_USERS } from './utils/queries';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -31,10 +45,10 @@ function App() {
   const [showLoginNav, setShowLoginNav] = useState(true);
 
   // queries
-  const { loading, data } = useQuery(QUERY_ME);
-  // const userGoal = data?.me.goal || '';
-  // const userPosts = data?.me.posts || [];
-  // const userName = data?.me.username || '';
+  // const { loading, data } = useQuery(QUERY_USERS);
+  const userGoal = data?.me.goal || '';
+  const userPosts = data?.me.posts || [];
+  const userName = data?.me.username || '';
 
   function toggleModal() {
     setIsModalOpen(!isModalOpen);
@@ -57,14 +71,14 @@ function App() {
     if (currentPage === 'dashboard') {
       return (
         <>
-          {loading ? (
-            <div className='posts-div'>Loading...</div>
-          ) : (
+          {/* {loading ? ( */}
+            {/* <div className='posts-div'>Loading...</div> */}
+          {/* ) : ( */}
             <>
               {/* <Goal userGoal={userGoal} userName={userName} /> */}
               {/* <Posts userPosts={userPosts} /> */}
             </>
-          )}
+          {/* )}  */}
           <div>
             {isModalOpen && (
               <PostModal onClose={toggleModal} />
