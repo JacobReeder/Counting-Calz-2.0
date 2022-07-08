@@ -1,13 +1,11 @@
 import React from 'react';
-
 import { useMutation } from '@apollo/client';
 import { ADD_POST } from '../utils/mutations';
-
 
 const PostModal = ({ onClose }) => {
 
   return (
-    <div className="modalBackdrop">
+    <div className="backdrop">
       <div className="modalContainer">
         <h3 className="modalTitle">New Meal</h3>
         <form id="post-form">
@@ -22,12 +20,12 @@ const PostModal = ({ onClose }) => {
             <input className="modal-input" type="text" name="desc" />
           </div>
           <div>
-            <label for="Time" class="fw-bold">When did you have this meal?</label>
+            <label htmlFor="Time" className="fw-bold">When did you have this meal?</label>
             <input type="datetime-local"/>
           </div>
           {/* error message */}
-          <button className="edit-goal-btn" type="submit">Save</button>
-          <button className="edit-goal-btn" type="click" onClick={onClose}>Cancel</button>
+          <button className="edit-goal-btn btn-padding" type="submit">Save</button>
+          <button className="edit-goal-btn btn-padding" type="click" onClick={onClose}>Cancel</button>
         </form>
       </div>
     </div>
