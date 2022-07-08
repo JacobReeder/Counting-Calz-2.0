@@ -1,6 +1,11 @@
 import React from 'react';
+<<<<<<< HEAD
 // import { useMutation } from '@apollo/client';
 // import { ADD_POST } from '../utils/mutations';
+=======
+import { useMutation } from '@apollo/client';
+import { ADD_POST } from '../../utils/mutations';
+>>>>>>> tneswick
 
 const PostModal = ({ onClose }) => {
 

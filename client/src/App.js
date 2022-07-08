@@ -6,19 +6,24 @@ import Posts from './components/Posts'
 import MealsPage from './components/Meals-Page'
 import PostModal from './components/PostModal'
 import LoginModal from './components/LoginModal'
-import SignupModal from './components/SignupModal'
 
 // apollo creation
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+<<<<<<< HEAD
 // import { useQuery } from '@apollo/client';
 // import { QUERY_ME } from './utils/queries';
 
 import { setContext } from '@apollo/client/link/context';
+=======
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from './utils/queries';
+>>>>>>> tneswick
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+<<<<<<< HEAD
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -33,6 +38,13 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+=======
+// || UNCOMMENT WHEN AUTH WORKING ||
+// const client = new ApolloClient({
+//   link: authLink.concat(httpLink),
+//   cache: new InMemoryCache(),
+// });
+>>>>>>> tneswick
 
 
 
