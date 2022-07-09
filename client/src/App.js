@@ -80,7 +80,7 @@ function App() {
     
     if (currentPage === 'dashboard' && Auth.loggedIn()) {
       return (
-        <Dash currentPage={currentPage} />
+          <Dash currentPage={currentPage} />
         )
       }
       if (currentPage === 'history' && Auth.loggedIn()) {

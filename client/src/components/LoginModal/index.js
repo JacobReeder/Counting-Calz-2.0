@@ -2,33 +2,61 @@ import React, { useState } from 'react';
 import Auth from '../../utils/auth';
 
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations'
+import { ADD_USER, LOGIN_USER } from '../../utils/mutations'
 
 const LoginModal = ({ onClose }) => {
   const [currentTab, setCurrentTab] = useState('login');
-  const [formState, setFormState] = useState({ username: '', email: '', password: '' });
+  const [ loginFormState, setLoginFormState] = useState({ email: '', password: '' });
+  const [ signUpFormState, setSignUpFormState] = useState({ username: '', email: '', password: '' });
 
   const [addUser, { error }] = useMutation(ADD_USER);
-
-  const handleFormChange = event => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value
-    });
-  }
-
+  const [loginUser, { error2 }] = useMutation(LOGIN_USER);
+  
+  // switch between login and signup tabs
   const handleTabChange = (tab) => {
     setCurrentTab(tab)
   }
 
-  const handleFormSubmit = async event => {
+  // form changes
+  const handleLoginFormChange = event => {
+    const { name, value } = event.target;
+    
+    setLoginFormState({
+      ...loginFormState,
+      [name]: value
+    });
+  }
+  
+  const handleSignUpFormChange = event => {
+    const { name, value } = event.target;
+
+    setSignUpFormState({
+      ...signUpFormState,
+      [name]: value
+    });
+  }
+  
+  // form submits
+  const handleLoginFormSubmit = async event => {
+    event.preventDefault()
+
+    try {
+      const { data } = await loginUser({
+        variables: { ...loginFormState }
+      });
+
+      Auth.login(data.loginUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  const handleSignUpFormSubmit = async event => {
     event.preventDefault()
 
     try {
       const { data } = await addUser({
-        variables: { ...formState }
+        variables: { ...signUpFormState }
       });
 
       Auth.login(data.addUser.token);
@@ -55,7 +83,7 @@ const LoginModal = ({ onClose }) => {
               onClick={() => handleTabChange('signup')}>
               Sign Up
             </a>
-            <form id="login-form" onSubmit={handleFormSubmit}>
+            <form id="login-form" onSubmit={handleLoginFormSubmit}>
               <div>
                 <label htmlFor="email">Email</label>
                 <br></br>
@@ -63,8 +91,8 @@ const LoginModal = ({ onClose }) => {
                   className="modal-input"
                   type="text"
                   name="email"
-                  value={formState.email}
-                  onChange={handleFormChange}
+                  value={loginFormState.email}
+                  onChange={handleLoginFormChange}
                 />
               </div>
               <div>
@@ -75,11 +103,11 @@ const LoginModal = ({ onClose }) => {
                   className="modal-input"
                   type="text"
                   name="password"
-                  value={formState.password}
-                  onChange={handleFormChange}
+                  value={loginFormState.password}
+                  onChange={handleLoginFormChange}
                 />
               </div>
-              {error && <div>Log In Failed</div>}
+              {error2 && <div>Log In Failed</div>}
               <button className="edit-goal-btn btn-padding" type="click" onClick={onClose}>Cancel</button>
               <button
                 id="btn-style"
@@ -108,7 +136,7 @@ const LoginModal = ({ onClose }) => {
             onClick={() => handleTabChange('signup')}>
             Sign Up
           </a>
-          <form id="login-form" onSubmit={handleFormSubmit}>
+          <form id="login-form" onSubmit={handleSignUpFormSubmit}>
             <div>
               <label htmlFor='username'>Username</label>
               <br></br>
@@ -116,8 +144,8 @@ const LoginModal = ({ onClose }) => {
                 className='modal-input'
                 type='text'
                 name='username'
-                value={formState.username}
-                onChange={handleFormChange}
+                value={signUpFormState.username}
+                onChange={handleSignUpFormChange}
               />
               <br></br>
               <label htmlFor="email">Email</label>
@@ -126,8 +154,8 @@ const LoginModal = ({ onClose }) => {
                 className="modal-input"
                 type="text"
                 name="email"
-                value={formState.email}
-                onChange={handleFormChange}
+                value={signUpFormState.email}
+                onChange={handleSignUpFormChange}
               />
             </div>
             <div>
@@ -138,8 +166,8 @@ const LoginModal = ({ onClose }) => {
                 className="modal-input"
                 type="text"
                 name="password"
-                value={formState.password}
-                onChange={handleFormChange}
+                value={signUpFormState.password}
+                onChange={handleSignUpFormChange}
               />
             </div>
             {error && <div>Sign Up Failed</div>}
