@@ -195,6 +195,7 @@ nav a {
   background-color: var(--2nd-Color);
   color: white;
   box-shadow: var(--box-shadow);
+  z-index: 4;
 }
 
 .btn-padding {
