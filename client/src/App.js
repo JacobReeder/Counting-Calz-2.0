@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Nav from './components/Nav'
-import Goal from './components/Goal'
 import Posts from './components/Posts'
 import MealsPage from './components/Meals-Page'
-import PostModal from './components/PostModal'
 import LoginModal from './components/LoginModal'
-
-// adding random imports from the deep-thoughts App.js to possibly help
-import { setContext } from '@apollo/client/link/context';
-
+import Dash from './components/Dash';
 
 // apollo creation
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-// import { useQuery } from '@apollo/client';
-// import { QUERY_ME } from './utils/queries';
+
+// import Authentication class
+import Auth from './utils/auth';
 
 import { setContext } from '@apollo/client/link/context';
 
@@ -39,77 +35,76 @@ const client = new ApolloClient({
 
 function App() {
   const [currentPage, setCurrentPage] = useState('meals')
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isBlurred, setIsBlurred] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [showLoginNav, setShowLoginNav] = useState(true);
 
-  // queries
-  // const { loading, data } = useQuery(QUERY_USERS);
-  const userGoal = data?.me.goal || '';
-  const userPosts = data?.me.posts || [];
-  const userName = data?.me.username || '';
+  useEffect(() => {
+    handleNavRender()
+  }, setCurrentPage)
 
-  function toggleModal() {
-    setIsModalOpen(!isModalOpen);
-    setIsBlurred(!isBlurred);
-  };
+  // left as comment for comparison
+  // const { loading, data } = useQuery(QUERY_ME);
+  // const userGoal = data?.me.goal || '';
+  // const userPosts = data?.me.posts || [];
+  // const userName = data?.me.username || '';
+
+
+  // left as comment for comparison
+  // function toggleModal() {
+  //   setIsModalOpen(!isModalOpen);
+  // };
 
   function toggleLoginModal() {
     setIsLoginModalOpen(!isLoginModalOpen);
   }
 
-  function toggleLoginNav() {
-    setShowLoginNav(!showLoginNav);
-    if (showLoginNav) {
-      setCurrentPage('meals')
+  // function no longer makes sense
+  // function toggleLoginNav() {
+  //   setShowLoginNav(!showLoginNav);
+  //   if (showLoginNav) {
+  //     setCurrentPage('meals')
+  //     return
+  //   }
+  // }
+
+  function handleNavRender() {
+    if (Auth.loggedIn()) {
+      setShowLoginNav(false)
       return
     }
+    setShowLoginNav(true)
+    return
   }
-
+  
   const renderPage = () => {
     
-    if (currentPage === 'dashboard') {
+    if (currentPage === 'dashboard' && Auth.loggedIn()) {
       return (
-        <>
-          {/* {loading ? ( */}
-            {/* <div className='posts-div'>Loading...</div> */}
-          {/* ) : ( */}
-            <>
-              {/* <Goal userGoal={userGoal} userName={userName} /> */}
-              {/* <Posts userPosts={userPosts} /> */}
-            </>
-          {/* )}  */}
-          <div>
-            {isModalOpen && (
-              <PostModal onClose={toggleModal} />
-            )}
-
-            <button
-              id="new-btn"
-              className="new-post"
-              onClick={() => toggleModal()}>
-              +
-            </button>
-          </div>
+        <Dash currentPage={currentPage} />
+        )
+      }
+      if (currentPage === 'history' && Auth.loggedIn()) {
+        return <Posts />
+      }
+      if (currentPage === 'meals') {
+        return (
+          <>
+          <MealsPage />
           <div>
             {isLoginModalOpen && (
               <LoginModal onClose={toggleLoginModal} />
-            )}
+              )}
           </div>
         </>
       )
     }
-    if (currentPage === 'history') {
-      // return <Posts userPosts={userPosts} />
-    }
-    if (currentPage === 'meals') {
-      return <MealsPage />
-    }
   }
-  // =======================================================================================npm i jwt-decode
+  // conditional render logic
   const handlePageChange = (page) => setCurrentPage(page);
-
+  
+  // set up nav look
+  // handleNavRender();
+  
   return (
     <>
       <ApolloProvider client={client}>

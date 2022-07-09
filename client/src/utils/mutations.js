@@ -53,7 +53,3 @@ export const DELETE_POST = gql`
     }
   }
 `
-<<<<<<< HEAD
-
-=======
->>>>>>> 5d676113de97a92bdb7bd9ce349794c92b44fc22

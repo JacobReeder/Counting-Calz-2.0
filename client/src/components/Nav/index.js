@@ -1,7 +1,12 @@
 import React from "react";
+import Auth from "../../utils/auth";
 
 const Nav = (props) => {
   const { currentPage, handlePageChange, showLoginNav, toggleLoginModal } = props;
+
+  const handleLogout = () =>  {
+    Auth.logout()
+  }
 
   const renderConditionalNav = () => {
     if (showLoginNav) {
@@ -32,7 +37,7 @@ const Nav = (props) => {
             className={currentPage === 'meals' ? 'active-nav' : ''}>Meals</a>
   
           <a href="#logout"
-            onClick={() => console.log('logout button clicked')}
+            onClick={() => handleLogout()}
             className="logout-btn">Logout</a>
         </>
       )

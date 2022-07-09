@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import Auth from '../../utils/auth';
 
-const LoginModal = ({ onClose, currentPage, handlePageChange }) => {
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations'
+
+const LoginModal = ({ onClose }) => {
   const [currentTab, setCurrentTab] = useState('login');
   const [formState, setFormState] = useState({ username: '', email: '', password: '' });
 
@@ -27,6 +31,7 @@ const LoginModal = ({ onClose, currentPage, handlePageChange }) => {
         variables: { ...formState }
       });
 
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -114,6 +119,7 @@ const LoginModal = ({ onClose, currentPage, handlePageChange }) => {
                 value={formState.username}
                 onChange={handleFormChange}
               />
+              <br></br>
               <label htmlFor="email">Email</label>
               <br></br>
               <input
