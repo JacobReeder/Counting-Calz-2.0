@@ -18,11 +18,7 @@ const typeDefs = gql`
     goal: Int
   }
 
-  type Post {
-    _id: ID
-    description: String
-    user_id: String  
-  }
+# removed duplicate "type Post" which didn't have the date_time either
   
   type Auth {
     token: ID!

@@ -1,12 +1,35 @@
 import React, { useState } from 'react';
 
-
-
 const LoginModal = ({ onClose, currentPage, handlePageChange }) => {
-  const [currentTab, setCurrentTab] = useState('login')
+  const [currentTab, setCurrentTab] = useState('login');
+  const [formState, setFormState] = useState({ username: '', email: '', password: '' });
+
+  const [addUser, { error }] = useMutation(ADD_USER);
+
+  const handleFormChange = event => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value
+    });
+  }
 
   const handleTabChange = (tab) => {
     setCurrentTab(tab)
+  }
+
+  const handleFormSubmit = async event => {
+    event.preventDefault()
+
+    try {
+      const { data } = await addUser({
+        variables: { ...formState }
+      });
+
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   const renderModal = () => {
@@ -27,25 +50,38 @@ const LoginModal = ({ onClose, currentPage, handlePageChange }) => {
               onClick={() => handleTabChange('signup')}>
               Sign Up
             </a>
-            <form id="login-form">
+            <form id="login-form" onSubmit={handleFormSubmit}>
               <div>
                 <label htmlFor="email">Email</label>
                 <br></br>
-                <input className="modal-input" type="text" name="email" />
+                <input
+                  className="modal-input"
+                  type="text"
+                  name="email"
+                  value={formState.email}
+                  onChange={handleFormChange}
+                />
               </div>
               <div>
-                <label htmlFor="desc">Password</label>
+                <label htmlFor="password">Password</label>
                 <br></br>
-                <input id="pw" className="modal-input" type="text" name="password" />
+                <input
+                  id="pw"
+                  className="modal-input"
+                  type="text"
+                  name="password"
+                  value={formState.password}
+                  onChange={handleFormChange}
+                />
               </div>
-              {/* error message */}
+              {error && <div>Log In Failed</div>}
               <button className="edit-goal-btn btn-padding" type="click" onClick={onClose}>Cancel</button>
-              <a href="#login"
+              <button
                 id="btn-style"
-                onClick={console.log('login button clicked')}
-                className={currentPage === 'signup' ? 'active-nav' : ''}>
+                className='edit-goal-btn btn-padding'
+                type='submit'>
                 Log In
-              </a>
+              </button>
             </form>
           </div>
         </div>
@@ -67,28 +103,53 @@ const LoginModal = ({ onClose, currentPage, handlePageChange }) => {
             onClick={() => handleTabChange('signup')}>
             Sign Up
           </a>
-          <form id="login-form">
+          <form id="login-form" onSubmit={handleFormSubmit}>
             <div>
+              <label htmlFor='username'>Username</label>
+              <br></br>
+              <input
+                className='modal-input'
+                type='text'
+                name='username'
+                value={formState.username}
+                onChange={handleFormChange}
+              />
               <label htmlFor="email">Email</label>
               <br></br>
-              <input className="modal-input" type="text" name="email" />
+              <input
+                className="modal-input"
+                type="text"
+                name="email"
+                value={formState.email}
+                onChange={handleFormChange}
+              />
             </div>
             <div>
-              <label htmlFor="desc">Password</label>
+              <label htmlFor="password">Password</label>
               <br></br>
-              <input id="pw" className="modal-input" type="text" name="password" />
+              <input
+                id="pw"
+                className="modal-input"
+                type="text"
+                name="password"
+                value={formState.password}
+                onChange={handleFormChange}
+              />
             </div>
-            {/* error message */}
+            {error && <div>Sign Up Failed</div>}
             <button className="edit-goal-btn btn-padding" type="click" onClick={onClose}>Cancel</button>
-            <a href="#signup"
+            <button
               id="btn-style"
-              onClick={() => console.log('signup button clicked')}
-              className={currentPage === 'signup' ? 'active-nav' : ''}>Sign Up</a>
+              className='edit-goal-btn btn-padding'
+              type='submit'>
+              Sign Up
+            </button>
           </form>
         </div>
       </div>
     )
   }
+
   return (
     <>
       {renderModal()}

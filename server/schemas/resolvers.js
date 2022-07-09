@@ -117,6 +117,7 @@ const resolvers = {
         const updatedGoal = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { goal: goal },
+          { new: true }
         )
         return updatedGoal
       }
