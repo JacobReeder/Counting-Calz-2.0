@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     handleNavRender()
-  }, setCurrentPage)
+  }, [setCurrentPage])
 
   // left as comment for comparison
   // const { loading, data } = useQuery(QUERY_ME);
