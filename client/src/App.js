@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Nav from './components/Nav'
-import Goal from './components/Goal'
 import Posts from './components/Posts'
 import MealsPage from './components/Meals-Page'
-import PostModal from './components/PostModal'
+import LoginModal from './components/LoginModal'
+import Dash from './components/Dash';
 
 // apollo creation
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+
+// import Authentication class
+import Auth from './utils/auth';
+
+import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
 });
 
 const client = new ApolloClient({
@@ -20,60 +33,91 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
-
 function App() {
-  // Need to add this into the page
-  // <ApolloProvider client={client}></ApolloProvider>
+  const [currentPage, setCurrentPage] = useState('meals')
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [showLoginNav, setShowLoginNav] = useState(true);
 
-  const [ currentPage, setCurrentPage ] = useState('meals')
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  useEffect(() => {
+    handleNavRender()
+  }, [setCurrentPage])
 
-  function toggleModal() {
-    setIsModalOpen(!isModalOpen);
-  };
+  // left as comment for comparison
+  // const { loading, data } = useQuery(QUERY_ME);
+  // const userGoal = data?.me.goal || '';
+  // const userPosts = data?.me.posts || [];
+  // const userName = data?.me.username || '';
 
+
+  // left as comment for comparison
+  // function toggleModal() {
+  //   setIsModalOpen(!isModalOpen);
+  // };
+
+  function toggleLoginModal() {
+    setIsLoginModalOpen(!isLoginModalOpen);
+  }
+
+  // function no longer makes sense
+  // function toggleLoginNav() {
+  //   setShowLoginNav(!showLoginNav);
+  //   if (showLoginNav) {
+  //     setCurrentPage('meals')
+  //     return
+  //   }
+  // }
+
+  function handleNavRender() {
+    if (Auth.loggedIn()) {
+      setShowLoginNav(false)
+      return
+    }
+    setShowLoginNav(true)
+    return
+  }
+  
   const renderPage = () => {
-    if (currentPage === 'dashboard') {
+    
+    if (currentPage === 'dashboard' && Auth.loggedIn()) {
       return (
-        <>
-          <Goal />
-          <Posts />
+          <Dash currentPage={currentPage} />
+        )
+      }
+      if (currentPage === 'history' && Auth.loggedIn()) {
+        return <Posts />
+      }
+      if (currentPage === 'meals') {
+        return (
+          <>
+          <MealsPage />
           <div>
-            {isModalOpen && (
-              <PostModal onClose={toggleModal} />
-            )}
-            <button
-              id="new-btn"
-              className="new-post"
-              onClick={() => toggleModal()}>
-                +
-            </button>
+            {isLoginModalOpen && (
+              <LoginModal onClose={toggleLoginModal} />
+              )}
           </div>
         </>
       )
     }
-    if (currentPage === 'history') {
-      return <Posts />
-    }
-    if (currentPage === 'meals') {
-      return <MealsPage />
-    }
   }
-// =======================================================================================npm i jwt-decode
+  // conditional render logic
   const handlePageChange = (page) => setCurrentPage(page);
+  
+  // set up nav look
+  // handleNavRender();
   
   return (
     <>
-      <header>
-        <a href="/" className='site-title'>The Cal-Zone</a>
-        <Nav handlePageChange={handlePageChange} currentPage={currentPage} />
-      </header>
-      <main>
-        <div className='main-wrap'>
-          {renderPage()}
-        </div>
-      </main>
+      <ApolloProvider client={client}>
+        <header>
+          <a href="/" className='site-title'>The Cal-Zone</a>
+          <Nav showLoginNav={showLoginNav} handlePageChange={handlePageChange} currentPage={currentPage} toggleLoginModal={toggleLoginModal} />
+        </header>
+        <main>
+          <div className='main-wrap'>
+            {renderPage()}
+          </div>
+        </main>
+      </ApolloProvider>
     </>
   );
 }

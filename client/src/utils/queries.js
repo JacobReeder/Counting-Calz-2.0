@@ -11,6 +11,7 @@ export const QUERY_USERS = gql`
         _id
         description
         calories
+        date_time
       }
     }
   }
@@ -43,7 +44,5 @@ export const QUERY_POST = gql`
     }
   }
 `
-// not sure if we need to query goals
-export const QUERY_GOAL = gql`
-`
+
 

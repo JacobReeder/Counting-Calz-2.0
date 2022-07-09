@@ -7,19 +7,13 @@ const MealsPage = () => {
   const [ mealLink, setMealLink ] = useState('loading...')
   const [ mealCountry, setMealCountry ] = useState('loading...')
   const [ mealTags, setMealTags ] = useState('loading...')
+  const [ mealIngs, setMealIngs ] = useState('1', '2')
 
   useEffect(() => {
     rndMeal();
-  }, [])
-  
-  // var titleEl = useRef(null);
-  // var linkEl = useRef(null);
-  // var countryEl = useRef(null);
-  // var imageEl = useRef(null);
-  // var tags = useRef(null);
+  }, [setMealIngs])
 
   const rndMeal = async () => {
-    // const url = 'https://www.themealdb.com/api/json/v1/9973533/random.php';
     const url = 'https://www.themealdb.com/api/json/v1/1/random.php';
     
     const response = await fetch(url)
@@ -42,42 +36,12 @@ const MealsPage = () => {
         ingredientsArr.push(ingredient)
       }
     }
-    
-    // fetch(url)
-    //   .then((res) => res.json())
-    //   .then((res) => {
-
-    //     if (res.meals[0].strSource !== '') {
-    //       console.log(res.meals[0]);
-
-    //       titleEl = res.meals[0].strMeal;
-    //       linkEl = res.meals[0].strSource;
-    //       imageEl = res.meals[0].strMealThumb;
-    //       countryEl = res.meals[0].strArea;
-    //       tags = res.meals[0].strTags;
-          
-    //       console.log(titleEl);
-    //       console.log(linkEl);
-    //       console.log(imageEl);
-    //       console.log(countryEl);
-    //       console.log(tags);
-
-    //     } else {
-    //       rndMeal();
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    setMealIngs(ingredientsArr)
+    // console.log(mealIngs);
   }
 
-  const handleBtnClick = (btn) => {
-    if(btn === 'refresh') {
+  const handleBtnClick = () => {
       rndMeal();
-    } else if (btn === 'try') {
-
-    }
-
   }
   
   return (
@@ -89,10 +53,14 @@ const MealsPage = () => {
 
       <div className='ing-btns'>
         <h4 className="country">Nationality: {mealCountry}</h4>
-        <h5 className="tags">{mealTags}</h5>
+        {/* <ul className='ing-list'>
+          {[mealIngs].map((ing) => {
+                return <p key={ing} className="ingredient">{ing}</p>              
+          })}
+        </ul> */}
         <div className='btns-wrap'>
           <button className="try-meal-btn">
-            <a href={mealLink} className="meal-link">
+            <a href={mealLink} className="meal-link" target="_blank" rel='noreferrer'>
                 Try This Meal
             </a>
           </button>
@@ -100,7 +68,7 @@ const MealsPage = () => {
           className='refresh-meal-btn'
           onClick={() => {
             const btn = 'refresh'
-            handleBtnClick(btn)
+            handleBtnClick()
           }}
           >
             Refresh
