@@ -1,8 +1,7 @@
 import React from "react";
 
-const Goal = ({ userName, userGoal }) => {
+const Goal = ({userName, userGoal}) => {
   return (
-    // removed hardcoded data in favor of hopefully backend data
     <div className="goal-div">
       <p>Hello {userName}</p>
       <h3 className={userGoal ? "calorie-goal" : ''}>{userGoal ? userGoal : 'Create Your Goal Below'}</h3>
