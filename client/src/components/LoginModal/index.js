@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 
-import { useMutation } from '@apollo/client';
-import { ADD_USER, LOGIN_USER } from '../../utils/mutations';
-
 const LoginModal = ({ onClose, currentPage, handlePageChange }) => {
   const [currentTab, setCurrentTab] = useState('login');
   const [formState, setFormState] = useState({ username: '', email: '', password: '' });

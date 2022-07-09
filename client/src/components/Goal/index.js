@@ -1,10 +1,6 @@
 import React from "react";
 
-import { useMutation } from '@apollo/client';
-import { ADD_GOAL } from '../../utils/mutations';
-
-const Goal = ({ userGoal, userName }) => {
-  return (
+const Goal = () => {
     // removed hardcoded data in favor of hopefully backend data
     <div className="goal-div">
       <p>Hello {userName}</p>

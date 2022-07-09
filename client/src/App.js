@@ -13,8 +13,10 @@ import { setContext } from '@apollo/client/link/context';
 
 // apollo creation
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import { useQuery } from '@apollo/client';
-import { QUERY_ME, QUERY_USERS } from './utils/queries';
+// import { useQuery } from '@apollo/client';
+// import { QUERY_ME } from './utils/queries';
+
+import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -34,8 +36,6 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
-
 
 function App() {
   const [currentPage, setCurrentPage] = useState('meals')
@@ -68,6 +68,7 @@ function App() {
   }
 
   const renderPage = () => {
+    
     if (currentPage === 'dashboard') {
       return (
         <>
@@ -110,6 +111,7 @@ function App() {
   const handlePageChange = (page) => setCurrentPage(page);
 
   return (
+    <>
       <ApolloProvider client={client}>
         <header>
           <a href="/" className='site-title'>The Cal-Zone</a>
@@ -121,6 +123,7 @@ function App() {
           </div>
         </main>
       </ApolloProvider>
+    </>
   );
 }
 

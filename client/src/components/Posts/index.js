@@ -1,9 +1,6 @@
 import React from "react";
 
-const Posts = ({ userPosts }) => {
-  if (!userPosts.length) {
-    return <h3>No posts yet...</h3>
-  }
+const Posts = () => {
   return (
     <div className="posts-div">
       <ul className="posts-list">
