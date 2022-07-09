@@ -36,7 +36,7 @@ const Goal = ({userName, userGoal}) => {
       <p>Hello {userName}</p>
       <h3 className={!userGoal || showEditInput ? 'hidden' : 'calorie-goal'}>{userGoal ? userGoal : ''}</h3>
       <h3 className={!userGoal ? '' : 'hidden'}>Create Your Goal Below</h3>
-      {userGoal ? <h3 className="calorie-dec">Calories Left Today</h3> : ''}
+      {userGoal ? <h3 className={!showEditInput ? "calorie-dec" : 'hidden'}>Calories Left Today</h3> : ''}
       <button className={!showEditInput ? (
         "edit-goal-btn"
       ) : (
