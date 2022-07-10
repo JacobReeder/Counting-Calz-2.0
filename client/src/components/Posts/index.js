@@ -1,12 +1,18 @@
 import React from "react";
 import { QUERY_ME } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
+import { DELETE_POST } from "../../utils/mutations";
+import { useQuery, useMutation } from "@apollo/client";
 
 const Posts = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const userPosts = data?.me.posts || [];
   const userName = data?.me.username || '';
   
+  function DeletePost(id) {
+    const [deletepost, { error }] = useMutation(DELETE_POST);
+    console.log('hello')
+  }
+
   return (
     <>
       {loading ? (
@@ -22,7 +28,10 @@ const Posts = () => {
                     <h6 className="post-date">{post.date_time}</h6>
                     <h5 className="post-description">{post.description}</h5>
                   </div>
-                  <div className="calories">{post.calories} cal</div>
+                  <div className="post-button-div">
+                    <div className="calories">{post.calories} cal</div>
+                    <button className="delete-post" onClick={DeletePost(post._id)}>Delete Post</button>
+                  </div>
                 </li>
               ))}
             {/* below is the hardcoded data from before */}
