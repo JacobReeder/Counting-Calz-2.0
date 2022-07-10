@@ -36,15 +36,24 @@ export const ADD_GOAL = gql`
 `
 
 export const ADD_POST = gql`
-  mutation addPost($userId: String!, $description: String!, $calories: Int!, $dateTime: String!) {
-    addPost(user_id: $userId, description: $description, calories: $calories, date_time: $datetTime) {
-      userId
+  mutation addPost($user_id: String!,$description: String!, $calories: Int!, $date_time: String!) {
+    addPost(user_id: $user_id, description: $description, calories: $calories, date_time: $date_time) {
+      user_id
       description
       calories
-      dateTime
+      date_time
     }
   }
 `;
+
+// mutation addPost($user_Id: String!, $description: String!, $calories: Int!, $dateTime: String!) {
+//   addPost(user_id: $user_Id, description: $description, calories: $calories, date_time: $datetTime) {
+//     user_Id
+//     description
+//     calories
+//     dateTime
+//   }
+// }
 
 export const DELETE_POST = gql`
   mutation Mutation($deletePostId: String) {
