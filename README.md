@@ -21,6 +21,6 @@ A website for you to track what you eat, and discover new and exciting cuisine.
 ## ⚙ Contribution
 ***Made By***
 - ***[Tneswick](https://github.com/Tneswick)***
-- ***[Kelvin Chao](https://github.com/)***
+- ***[Kelvin Chao](https://github.com/KKWChao)***
 - ***[cole22simpson](https://github.com/cole22simpson)***
 - ***[JacobReeder](https://github.com/JacobReeder)***
