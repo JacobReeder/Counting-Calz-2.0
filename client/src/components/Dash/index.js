@@ -32,7 +32,7 @@ const Dash = ({ currentPage }) => {
       ) : (
         <>
           <Goal userGoal={userGoal} userName={userName} />
-          <Posts userPosts={userPosts} />
+          <Posts />
         </>
       )}
       <div>
