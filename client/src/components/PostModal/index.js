@@ -51,7 +51,7 @@ const PostModal = ({ onClose }) => {
             <br></br>
             <input 
             className="modal-input" 
-            type="text" 
+            type="number" 
             name="calories"
             onChange={handleFormChange}
             />
