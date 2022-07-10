@@ -1,0 +1,38 @@
+[
+    
+    {
+        "description" : "sapiente illo animi non et molestiae et blanditiis adipisci aut ut dolore", 
+        "user_id" : "WalterWhite",
+        "date_time": "2022/07/04T15:23",
+        "calories": "950"
+        
+    },
+    {
+        "description" : "Eggs and 1 slice of bacon", 
+        "user_id" : "WalterWhite",
+        "date_time": "2022/07/04T10:15",
+        "calories": "360" 
+       
+    },
+    {
+        "description" : "nam assumenda dolorum est sint eum qui dolorem", 
+        "user_id" : "TonySoprano",
+        "date_time": "2022/07/04T15:00",
+        "calories": "1300" 
+        
+    },
+    {
+        "description" : "Yo Mr White, I lost some weight", 
+        "user_id" : "TonySoprano",
+        "date_time": "2022/07/04T06:20",
+        "calories": "700" 
+        
+    },
+    {
+        "description" : "voluptas quis voluptates et laborum est facere et quia quasi cupiditate dolorem", 
+        "user_id" : "SaulGoodman",
+        "date_time": "2022/07/05T12:00",
+        "calories": "300"
+        
+    }
+]
