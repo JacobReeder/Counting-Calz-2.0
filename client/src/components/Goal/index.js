@@ -23,7 +23,7 @@ const Goal = ({userName, userGoal}) => {
 
     try {
       await addGoal({
-        variables: { ...inputState }
+        variables: { goal: parseInt(inputState) }
       });
       setShowEditInput(false)
     } catch (e) {

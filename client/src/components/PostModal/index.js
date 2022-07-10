@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Auth from '../../utils/auth'
 
 import { useMutation } from '@apollo/client';
 
@@ -18,12 +19,14 @@ const PostModal = ({ onClose }) => {
     });
   }
 
+  const user = Auth.getProfile().data._id
+
   const handleFormSubmit = async event => {
     event.preventDefault()
 
     try {
       await addPost({
-        variables: { ...formState }
+        variables: { ...formState, calories: parseInt(formState.calories), user_id: user }
       });
 
       setFormState({ calories: '', description: '', dateTime: '' })

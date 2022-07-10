@@ -79,6 +79,8 @@ const resolvers = {
     addPost: async (parent, args, context) => {
       if (context.user) {
         const post = await Post.create({ ...args, user_id: context.user._id })
+
+        console.log(context.user.user_id)
           
         await User.findByIdAndUpdate(
           { _id: context.user._id },
