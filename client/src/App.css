@@ -222,7 +222,8 @@ nav a {
   box-shadow: var(--box-shadow);
 }
 .post-button-div {
-  margin-left: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 .calories {
   background-color: var(--2nd-Color);
@@ -235,10 +236,7 @@ nav a {
   justify-self: end;
   margin: 0.5rem;
   text-align: center;
-}
-
-post-button-div .delete-post {
-  
+  align-self: center;
 }
 
 .delete-post {
@@ -250,7 +248,7 @@ post-button-div .delete-post {
   border-radius: 0.5rem 0.5rem 0.5rem;
   height: 30%;
   justify-self: end;
-  margin: 0.5rem;
+  align-self: center;
   text-align: center;
 }
 
@@ -429,8 +427,8 @@ post-button-div .delete-post {
   }
   
   .calories {
-    font-size: 1.7rem;
-    height: 32%;
+    font-size: 1.2rem;
+    height: 25%;
     width: 40%;
   }
 
