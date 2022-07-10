@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import Auth from '../../utils/auth'
+import Auth from '../../utils/auth';
 
 import { useMutation } from '@apollo/client';
 
 import { ADD_POST } from '../../utils/mutations'
 
 const PostModal = ({ onClose }) => {
-  const [ formState, setFormState ] = useState({ calories: '', description: '', dateTime: '' });
+  const user = Auth.getProfile().data._id
+
+  const [ formState, setFormState ] = useState({ user_id: user, calories: '', description: '', date_time: '' });
 
   const [addPost, { error }] = useMutation(ADD_POST);
 
@@ -19,17 +21,15 @@ const PostModal = ({ onClose }) => {
     });
   }
 
-  const user = Auth.getProfile().data._id
-
   const handleFormSubmit = async event => {
     event.preventDefault()
 
     try {
       await addPost({
-        variables: { ...formState, calories: parseInt(formState.calories), user_id: user }
+        variables: { ...formState, user_id: user, calories: parseInt(formState.calories) }
       });
 
-      setFormState({ calories: '', description: '', dateTime: '' })
+      setFormState({ user_id: user, calories: '', description: '', date_time: '' })
 
     } catch (e) {
       console.error(e);
@@ -62,10 +62,10 @@ const PostModal = ({ onClose }) => {
             />
           </div>
           <div>
-            <label htmlFor="dateTime" className="fw-bold">When did you have this meal?</label>
+            <label htmlFor="date_time" className="fw-bold">When did you have this meal?</label>
             <input 
             type="datetime-local" 
-            name="dateTime"
+            name="date_time"
             onChange={handleFormChange}
             />
           </div>
