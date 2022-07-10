@@ -7,10 +7,25 @@ const Posts = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const userPosts = data?.me.posts || [];
   const userName = data?.me.username || '';
+  const [deletePost, { error }] = useMutation(DELETE_POST);
   
-  function DeletePost(id) {
-    const [deletepost, { error }] = useMutation(DELETE_POST);
-    console.log('hello')
+  const onClickDeletePost = async (id) => {
+    try {
+      await deletePost({
+        variables: {
+          deletePostId: id
+        }
+      })
+    } catch(e) {
+      console.error(e)
+    }
+    console.log(`${id} post deleted`)
+    window.location.reload()
+  }
+
+
+  const handePageChange = async () => {
+    this.setState({})
   }
 
   return (
@@ -30,7 +45,11 @@ const Posts = () => {
                   </div>
                   <div className="post-button-div">
                     <div className="calories">{post.calories} cal</div>
-                    <button className="delete-post" onClick={DeletePost(post._id)}>Delete Post</button>
+                    <button className="delete-post" 
+                      onClick={() => {
+                        onClickDeletePost(post._id)
+                        
+                        }}>Delete Post</button>
                   </div>
                 </li>
               ))}
