@@ -44,7 +44,7 @@ const LoginModal = ({ onClose }) => {
       const { data } = await loginUser({
         variables: { ...loginFormState }
       });
-      console.log(data, '========== data logged in try block');
+      
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);

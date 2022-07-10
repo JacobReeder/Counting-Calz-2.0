@@ -20,7 +20,7 @@ const PostModal = ({ onClose }) => {
       [name]: value
     });
   }
-  
+
   const handleFormSubmit = async event => {
     event.preventDefault()
 
