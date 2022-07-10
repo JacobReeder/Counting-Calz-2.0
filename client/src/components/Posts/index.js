@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { QUERY_ME } from "../../utils/queries";
 import { DELETE_POST } from "../../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
@@ -8,6 +8,9 @@ const Posts = () => {
   const userPosts = data?.me.posts || [];
   const userName = data?.me.username || '';
   const [deletePost, { error }] = useMutation(DELETE_POST);
+  const refreshPage = () => {
+    window.location.reload(false)
+  }
   
   const onClickDeletePost = async (id) => {
     try {
@@ -20,14 +23,9 @@ const Posts = () => {
       console.error(e)
     }
     console.log(`${id} post deleted`)
-    window.location.reload()
+    refreshPage()
   }
-
-
-  const handePageChange = async () => {
-    this.setState({})
-  }
-
+  
   return (
     <>
       {loading ? (

@@ -70,6 +70,7 @@ function App() {
   function handleNavRender() {
     if (Auth.loggedIn()) {
       setShowLoginNav(false)
+      setCurrentPage('dashboard')
       return
     }
     setShowLoginNav(true)

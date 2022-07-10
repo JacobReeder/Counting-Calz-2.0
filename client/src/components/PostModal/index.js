@@ -21,6 +21,10 @@ const PostModal = ({ onClose }) => {
     });
   }
 
+  const refreshPage = () => {
+    window.location.reload(false)
+  }
+
   const handleFormSubmit = async event => {
     event.preventDefault()
 
@@ -30,7 +34,8 @@ const PostModal = ({ onClose }) => {
       });
 
       setFormState({ user_id: user, calories: '', description: '', date_time: '' })
-
+      onClose()
+      refreshPage();
     } catch (e) {
       console.error(e);
     }
@@ -46,7 +51,7 @@ const PostModal = ({ onClose }) => {
             <br></br>
             <input 
             className="modal-input" 
-            type="text" 
+            type="number" 
             name="calories"
             onChange={handleFormChange}
             />
