@@ -8,7 +8,7 @@ const Posts = () => {
   const userPosts = data?.me.posts || [];
   const userName = data?.me.username || '';
   const [deletePost, { error }] = useMutation(DELETE_POST);
-  
+  console.log(userPosts)
   const refreshPage = () => {
     window.location.reload(false)
   }
