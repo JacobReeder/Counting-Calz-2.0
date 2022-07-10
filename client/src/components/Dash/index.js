@@ -17,7 +17,7 @@ const Dash = ({ currentPage }) => {
   // query logic and data handling
   const { loading, data } = useQuery(QUERY_ME);
   const userGoal = data?.me.goal || '';
-  const userPosts = data?.me.posts || [];
+  // const userPosts = data?.me.posts || [];
   const userName = data?.me.username || '';
 
   // functions for editing states
