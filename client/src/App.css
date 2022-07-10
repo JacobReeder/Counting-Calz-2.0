@@ -217,7 +217,7 @@ nav a {
   background-color: white;
   border-radius: 1rem 1rem 1rem;
   padding: 1rem;
-  margin: 0.5rem;
+  margin: 0.7rem;
   max-width: 100%;
   box-shadow: var(--box-shadow);
 }
@@ -332,3 +332,100 @@ nav a {
 
 /* media queries */
 
+@media only screen and (min-width: 821px) {
+  .meals-div {
+    width: 800px;
+  }
+
+  .site-title {
+    font-size: 10vh;
+  }
+
+  nav a {
+    font-size: 2.5vh;
+  }
+
+  .meal-title {
+    font-size: 4rem;
+  }
+
+  .country {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .try-meal-btn {
+    font-size: 1.5rem;
+  }
+
+  .refresh-meal-btn {
+    font-size: 1.5rem;
+  }
+
+  .modalContainer {
+    width: 30vw;
+    font-size: 2rem;
+    justify-self: center;
+    margin: 0 auto;
+  }
+
+  .modalContainer input {
+    width: 80%;
+    height: 3vh;
+    margin: 1.5rem 0;
+    font-size: 1.5rem;
+  }
+
+  .modalTitle {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 600;
+    margin: 10px;
+    text-decoration: none;
+    color: var(--2nd-Color);
+    text-shadow: var(--text-shadow);
+  }
+
+  .modal-title-active {
+    color: var(--1st-Color);
+  }
+
+  .edit-goal-btn {
+    font-size: 2rem;
+  }
+
+  #btn-style {
+    font-size: 2rem;
+  }
+
+  .posts-div {
+    width: 800px;
+    box-shadow: var(--box-shadow);
+    display: grid;
+    font-size: 1.3rem;
+  }
+  
+  .list-el {
+    box-shadow: var(--box-shadow);
+    font-size: 1.5rem;
+  }
+  
+  .calories {
+    font-size: 1.7rem;
+    height: 32%;
+    width: 40%;
+  }
+
+  .goal-div {
+    width: 800px;
+    font-size: 1.5rem;
+  }
+
+  .calorie-goal {
+    color: var(--2nd-Color);
+    text-shadow: var(--text-shadow);
+    font-size: 5rem;
+    text-align: center;
+    margin: 1rem 0 0 0;
+  }
+}

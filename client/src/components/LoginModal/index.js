@@ -101,7 +101,7 @@ const LoginModal = ({ onClose }) => {
                 <input
                   id="pw"
                   className="modal-input"
-                  type="text"
+                  type="password"
                   name="password"
                   value={loginFormState.password}
                   onChange={handleLoginFormChange}
@@ -164,7 +164,7 @@ const LoginModal = ({ onClose }) => {
               <input
                 id="pw"
                 className="modal-input"
-                type="text"
+                type="password"
                 name="password"
                 value={signUpFormState.password}
                 onChange={handleSignUpFormChange}
